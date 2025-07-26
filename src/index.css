@@ -1,5 +1,14 @@
 :root {
   font-family: system-ui;
+
+  /** Colors */
+  --text: #000;
+  --bg: #fcfcfc;
+  --bg-standout: #fff;
+  --selection-outline: #00f;
+  --border-color: #ccc;
+
+  --border: 1px solid var(--border-color);
 }
 
 body {

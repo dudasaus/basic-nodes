@@ -1,9 +1,12 @@
 import "@xyflow/react/dist/style.css";
+import "./Flow.css";
 import { useCallback, useState } from "react";
 import {
   addEdge,
   applyEdgeChanges,
   applyNodeChanges,
+  Background,
+  Controls,
   type DefaultEdgeOptions,
   type Edge,
   type Node,
@@ -49,6 +52,11 @@ export function Flow() {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       defaultEdgeOptions={defaultEdgeOptions}
-    />
+      colorMode="light"
+      className="flow"
+    >
+      <Background />
+      <Controls />
+    </ReactFlow>
   );
 }

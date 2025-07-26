@@ -1,25 +1,31 @@
+import "./App.css";
 import {
   Panel,
   PanelGroup,
   PanelResizeHandle,
 } from "../../components/resizablepanels/ResizablePanels";
 import { Flow } from "../flow/Flow";
+import { Header } from "../../components/header/Header";
 
 export function App() {
   return (
-    <div
-      style={{
-        width: "100dvw",
-        height: "100dvh",
-      }}
-    >
-      <PanelGroup direction="vertical">
+    <div className="page">
+      <Header />
+      <PanelGroup direction="horizontal">
         <Panel>
-          <Flow />
+          <PanelGroup direction="vertical">
+            <Panel>
+              <Flow />
+            </Panel>
+            <PanelResizeHandle />
+            <Panel defaultSize={25}>
+              <h2>Node Library</h2>
+            </Panel>
+          </PanelGroup>
         </Panel>
         <PanelResizeHandle />
         <Panel defaultSize={25}>
-          <h1>Placeholder</h1>
+          <h2>Documentation</h2>
         </Panel>
       </PanelGroup>
     </div>

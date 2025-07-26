@@ -1,0 +1,5 @@
+.page-header {
+  padding: 4px;
+  border-bottom: var(--border);
+  background-color: var(--bg-standout);
+}

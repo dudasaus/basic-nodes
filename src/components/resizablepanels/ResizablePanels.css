@@ -1,14 +1,14 @@
-.resizable-panel-group {
-  background: #eee;
-}
-
 .resizable-panel {
-  background: #fff;
-  border-radius: 8px;
-  padding: 0.25rem;
-  margin: 0.25rem;
+  background: var(--bg)
 }
 
 .resizable-resize-handle {
-  text-align: center;
+  min-height: 1px;
+  min-width: 1px;
+
+  background-color: var(--border-color);
+
+  &:not([data-resize-handle-state="inactive"]) {
+    background-color: var(--selection-outline);
+  }
 }
