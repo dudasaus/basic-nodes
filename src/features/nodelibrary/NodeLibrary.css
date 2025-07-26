@@ -1,0 +1,24 @@
+.node-library {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0.25rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.node-library-content {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  position: relative;
+}
+
+.node-library-node {
+  box-sizing: border-box;
+  display: flex;
+  width: 200px;
+  height: 140px;
+  border: var(--border);
+  align-items: center;
+  justify-content: center;
+}

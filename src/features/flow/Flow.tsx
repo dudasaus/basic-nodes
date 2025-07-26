@@ -1,6 +1,6 @@
 import "@xyflow/react/dist/style.css";
 import "./Flow.css";
-import { useCallback, useState } from "react";
+import { type DragEventHandler, useCallback, useState } from "react";
 import {
   addEdge,
   applyEdgeChanges,
@@ -14,7 +14,9 @@ import {
   type OnEdgesChange,
   type OnNodesChange,
   ReactFlow,
+  useReactFlow,
 } from "@xyflow/react";
+import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
 
 const initialNodes: Node[] = [
   { id: "1", data: { label: "Node 1" }, position: { x: 5, y: 5 } },
@@ -30,6 +32,7 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
 export function Flow() {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
+  const flow = useReactFlow();
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -44,6 +47,25 @@ export function Flow() {
     [setEdges],
   );
 
+  const onDragOver: DragEventHandler = (ev) => {
+    // Allow drop.
+    if (dragAndDropService.getData() === "node") {
+      ev.preventDefault();
+    }
+  };
+
+  const onDrop: DragEventHandler = (ev) => {
+    const position = flow.screenToFlowPosition({
+      x: ev.clientX,
+      y: ev.clientY,
+    });
+    flow.addNodes({
+      id: crypto.randomUUID(),
+      data: { label: dragAndDropService.getData() },
+      position,
+    });
+  };
+
   return (
     <ReactFlow
       nodes={nodes}
@@ -51,6 +73,8 @@ export function Flow() {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
       defaultEdgeOptions={defaultEdgeOptions}
       colorMode="light"
       className="flow"

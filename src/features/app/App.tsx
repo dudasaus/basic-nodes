@@ -4,8 +4,9 @@ import {
   PanelGroup,
   PanelResizeHandle,
 } from "../../components/resizablepanels/ResizablePanels";
-import { Flow } from "../flow/Flow";
 import { Header } from "../../components/header/Header";
+import { NodeLibrary } from "../nodelibrary/NodeLibrary";
+import { FlowContainer } from "../flow/FlowContainer";
 
 export function App() {
   return (
@@ -15,11 +16,11 @@ export function App() {
         <Panel>
           <PanelGroup direction="vertical">
             <Panel>
-              <Flow />
+              <FlowContainer />
             </Panel>
             <PanelResizeHandle />
             <Panel defaultSize={25}>
-              <h2>Node Library</h2>
+              <NodeLibrary />
             </Panel>
           </PanelGroup>
         </Panel>
