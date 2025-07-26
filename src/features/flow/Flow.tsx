@@ -6,7 +6,6 @@ import {
   applyNodeChanges,
   type DefaultEdgeOptions,
   type Edge,
-  type FitViewOptions,
   type Node,
   type OnConnect,
   type OnEdgesChange,
@@ -20,10 +19,6 @@ const initialNodes: Node[] = [
 ];
 
 const initialEdges: Edge[] = [{ id: "e1-2", source: "1", target: "2" }];
-
-const fitViewOptions: FitViewOptions = {
-  padding: 0.2,
-};
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
   animated: true,
@@ -53,8 +48,6 @@ export function Flow() {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-      fitView
-      fitViewOptions={fitViewOptions}
       defaultEdgeOptions={defaultEdgeOptions}
     />
   );
