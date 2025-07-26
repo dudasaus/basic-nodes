@@ -20,12 +20,9 @@ import {
 import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
 import { GenericNode } from "../../components/nodes/generic/GenericNode";
 
-const initialNodes: Node[] = [
-  { id: "1", data: { label: "Node 1" }, position: { x: 5, y: 5 } },
-  { id: "2", data: { label: "Node 2" }, position: { x: 5, y: 100 } },
-];
+const initialNodes: Node[] = [];
 
-const initialEdges: Edge[] = [{ id: "e1-2", source: "1", target: "2" }];
+const initialEdges: Edge[] = [];
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
   animated: true,

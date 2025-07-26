@@ -4,4 +4,23 @@
   min-width: 150px;
   min-height: 50px;
   border: 1px solid var(--text);
+
+  .selected>& {
+    outline: 1px solid var(--selection-outline);
+  }
+}
+
+.generic-node-label {
+  padding: 4px 8px;
+  border-bottom: var(--border);
+  background-color: var(--bg-standout);
+}
+
+.generic-node-handle-section {
+  position: relative;
+  padding: 4px 8px;
+
+  &.output {
+    text-align: right;
+  }
 }
