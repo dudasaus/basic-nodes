@@ -1,0 +1,13 @@
+.resizable-panel-group {
+  background: #eee;
+}
+
+.resizable-panel {
+  background: #fff;
+  border-radius: 8px;
+  margin: 0.25rem;
+}
+
+.resizable-resize-handle {
+  text-align: center;
+}
