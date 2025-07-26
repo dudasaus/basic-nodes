@@ -10,6 +10,7 @@ import {
   type DefaultEdgeOptions,
   type Edge,
   type Node,
+  type NodeTypes,
   type OnConnect,
   type OnEdgesChange,
   type OnNodesChange,
@@ -17,6 +18,7 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
+import { GenericNode } from "../../components/nodes/generic/GenericNode";
 
 const initialNodes: Node[] = [
   { id: "1", data: { label: "Node 1" }, position: { x: 5, y: 5 } },
@@ -33,6 +35,10 @@ export function Flow() {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
   const flow = useReactFlow();
+
+  const nodeTypes: NodeTypes = {
+    genericNode: GenericNode,
+  };
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -60,8 +66,17 @@ export function Flow() {
       y: ev.clientY,
     });
     flow.addNodes({
+      type: "genericNode",
       id: crypto.randomUUID(),
-      data: { label: dragAndDropService.getData() },
+      data: {
+        label: dragAndDropService.getData(),
+        inputs: [
+          { label: "input 1", id: "in-1" },
+        ],
+        outputs: [
+          { label: "output 1", id: "out-1" },
+        ],
+      },
       position,
     });
   };
@@ -70,6 +85,7 @@ export function Flow() {
     <ReactFlow
       nodes={nodes}
       edges={edges}
+      nodeTypes={nodeTypes}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
