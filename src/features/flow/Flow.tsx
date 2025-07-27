@@ -19,6 +19,10 @@ import {
 } from "@xyflow/react";
 import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
 import { GenericNode } from "../../components/nodes/generic/GenericNode";
+import {
+  numberHandleType,
+  stringHandleType,
+} from "../../components/nodes/generic/GenericNodeTypes";
 
 const initialNodes: Node[] = [];
 
@@ -52,7 +56,7 @@ export function Flow() {
 
   const onDragOver: DragEventHandler = (ev) => {
     // Allow drop.
-    if (dragAndDropService.getData() === "node") {
+    if (dragAndDropService.getData()) {
       ev.preventDefault();
     }
   };
@@ -65,15 +69,7 @@ export function Flow() {
     flow.addNodes({
       type: "genericNode",
       id: crypto.randomUUID(),
-      data: {
-        label: dragAndDropService.getData(),
-        inputs: [
-          { label: "input 1", id: "in-1" },
-        ],
-        outputs: [
-          { label: "output 1", id: "out-1" },
-        ],
-      },
+      data: dragAndDropService.getData(),
       position,
     });
   };

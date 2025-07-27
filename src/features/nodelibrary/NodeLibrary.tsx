@@ -1,3 +1,7 @@
+import {
+  type GenericNodeConfig,
+  numberHandleType,
+} from "../../components/nodes/generic/GenericNodeTypes";
 import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
 import "./NodeLibrary.css";
 
@@ -8,19 +12,68 @@ export function NodeLibrary() {
         Node Library
       </div>
       <div className="node-library-content">
-        <div
-          className="node-library-node"
-          draggable="true"
-          onDragStart={(_ev) => {
-            dragAndDropService.setData("node");
+        <NodeLibraryNode
+          nodeConfig={{
+            label: "Add",
+            inputs: [{
+              id: "in-1",
+              label: "A",
+              type: numberHandleType,
+            }, {
+              id: "in-2",
+              label: "B",
+              type: numberHandleType,
+            }],
+            outputs: [
+              {
+                id: "sum",
+                label: "Sum",
+                type: numberHandleType,
+              },
+            ],
           }}
-          onDragEnd={() => {
-            dragAndDropService.clearData();
+        />
+        <NodeLibraryNode
+          nodeConfig={{
+            label: "Subtract",
+            inputs: [{
+              id: "in-1",
+              label: "A",
+              type: numberHandleType,
+            }, {
+              id: "in-2",
+              label: "B",
+              type: numberHandleType,
+            }],
+            outputs: [
+              {
+                id: "difference",
+                label: "Difference",
+                type: numberHandleType,
+              },
+            ],
           }}
-        >
-          Basic Node
-        </div>
+        />
       </div>
+    </div>
+  );
+}
+
+function NodeLibraryNode(
+  props: { label?: string; nodeConfig: GenericNodeConfig },
+) {
+  return (
+    <div
+      className="node-library-node"
+      draggable="true"
+      onDragStart={(_ev) => {
+        dragAndDropService.setData(props.nodeConfig);
+      }}
+      onDragEnd={() => {
+        dragAndDropService.clearData();
+      }}
+    >
+      {props.label ?? props.nodeConfig.label}
     </div>
   );
 }

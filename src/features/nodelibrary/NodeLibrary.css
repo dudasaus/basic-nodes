@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   overflow: auto;
   position: relative;
+  gap: 8px;
 }
 
 .node-library-node {
