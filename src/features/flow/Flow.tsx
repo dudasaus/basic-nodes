@@ -19,10 +19,6 @@ import {
 } from "@xyflow/react";
 import { dragAndDropService } from "../../services/draganddrop/DragAndDropService";
 import { GenericNode } from "../../components/nodes/generic/GenericNode";
-import {
-  numberHandleType,
-  stringHandleType,
-} from "../../components/nodes/generic/GenericNodeTypes";
 
 const initialNodes: Node[] = [];
 
